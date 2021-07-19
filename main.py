@@ -65,6 +65,7 @@ def get_classtable():
 
 def preprocess(image_path):
     raw_image = cv2.imread(image_path)
+    print(np.shape(raw_image))
     raw_image = cv2.resize(raw_image, (224,) * 2)
     image = transforms.Compose(
         [
@@ -72,6 +73,7 @@ def preprocess(image_path):
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ]
     )(raw_image[..., ::-1].copy())
+    print('image:', np.shape(image))
     return image, raw_image
 
 
@@ -105,7 +107,7 @@ def save_sensitivity(filename, maps):
     cv2.imwrite(filename, maps)
 
 
-# torchvision models
+# models contained in the torchvision
 model_names = sorted(
     name
     for name in models.__dict__
@@ -139,7 +141,7 @@ def demo1(image_paths, target_layer, arch, topk, output_dir, cuda):
     # Model from torchvision
     model = models.__dict__[arch](pretrained=True)
     model.to(device)
-    model.eval()
+    model.eval() # for evaluation mode
 
     # Images
     images, raw_images = load_images(image_paths)
