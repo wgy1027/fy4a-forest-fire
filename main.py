@@ -144,6 +144,7 @@ def demo1(image_paths, target_layer, arch, topk, output_dir, cuda):
     # Images
     images, raw_images = load_images(image_paths)
     images = torch.stack(images).to(device)
+    print(len(images))
 
     """
     Common usage:
