@@ -170,7 +170,7 @@ def demo1(image_paths, target_layer, arch, topk, output_dir, cuda):
             save_gradient(
                 filename=osp.join(
                     output_dir,
-                    "{}-{}-vanilla-bp-{}.png".format(j, arch, classes[ids[j, i]]),
+                    "{}-{}-vanilla_bp-{}.png".format(j, arch, classes[ids[j, i]]),
                 ),
                 gradient=gradients[j],
             )
@@ -226,7 +226,7 @@ def demo1(image_paths, target_layer, arch, topk, output_dir, cuda):
             save_gradient(
                 filename=osp.join(
                     output_dir,
-                    "{}-{}-guided-bp-{}.png".format(j, arch, classes[ids[j, i]]),
+                    "{}-{}-guided_bp-{}.png".format(j, arch, classes[ids[j, i]]),
                 ),
                 gradient=gradients[j],
             )
