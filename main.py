@@ -144,7 +144,6 @@ def demo1(image_paths, target_layer, arch, topk, output_dir, cuda):
     # Images
     images, raw_images = load_images(image_paths)
     images = torch.stack(images).to(device)
-    print(len(images))
 
     """
     Common usage:
@@ -171,7 +170,7 @@ def demo1(image_paths, target_layer, arch, topk, output_dir, cuda):
             save_gradient(
                 filename=osp.join(
                     output_dir,
-                    "{}-{}-vanilla-{}.png".format(j, arch, classes[ids[j, i]]),
+                    "{}-{}-vanilla-bp-{}.png".format(j, arch, classes[ids[j, i]]),
                 ),
                 gradient=gradients[j],
             )
@@ -227,7 +226,7 @@ def demo1(image_paths, target_layer, arch, topk, output_dir, cuda):
             save_gradient(
                 filename=osp.join(
                     output_dir,
-                    "{}-{}-guided-{}.png".format(j, arch, classes[ids[j, i]]),
+                    "{}-{}-guided-bp-{}.png".format(j, arch, classes[ids[j, i]]),
                 ),
                 gradient=gradients[j],
             )
