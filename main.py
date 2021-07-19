@@ -12,6 +12,7 @@ import os.path as osp
 
 import click
 import cv2
+import PIL
 import matplotlib.cm as cm
 import numpy as np
 import torch
@@ -64,15 +65,15 @@ def get_classtable():
 
 
 def preprocess(image_path):
-    raw_image = cv2.imread(image_path)
-    print(np.shape(raw_image))
-    raw_image = cv2.resize(raw_image, (224,) * 2)
+    raw_image = PIL.Image.open(image_path)
+    raw_image = raw_image.resize((224,224))
+    raw_image = np.array(raw_image)
     image = transforms.Compose(
         [
-            transforms.ToTensor(),
+            transforms.ToTensor(),  # change 
             transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ]
-    )(raw_image[..., ::-1].copy())
+    )(raw_image.copy())
     print('image:', np.shape(image))
     return image, raw_image
 
